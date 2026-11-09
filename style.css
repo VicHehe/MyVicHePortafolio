@@ -2,23 +2,21 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* Tonos oscuros con tinte azul/morado profundo (EDG32) */
   --bg:        #14121a; 
   --bg-soft:   #1c1924;
   --bg-card:   #252230;
   --border:    #383346;
   
-  --text:      #f4f4f6;
-  --text-dim:  #8b9bb4; /* Gris azulado suave */
+  --text:      #f4f4f6; /* Blanco puro para la mayoría de textos */
+  --text-dim:  #a3aab8; /* Gris claro para textos secundarios */
   
-  /* Morado principal */
   --purple:    #a855f7;
   --purple-2:  #7c3aed;
   --purple-3:  #c084fc;
   --glow:      rgba(168, 85, 247, 0.15);
   
   --radius:    12px;
-  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 html, body {
@@ -27,16 +25,21 @@ html, body {
 }
 
 body {
-  font-family: 'Outfit', system-ui, sans-serif;
+  /* Fuente Lora para textos generales (Serif elegante) */
+  font-family: 'Lora', 'Times New Roman', serif;
   color: var(--text);
-  line-height: 1.5;
+  line-height: 1.6;
   display: flex;
   flex-direction: column;
   background-color: var(--bg);
-  /* Sutil resplandor de fondo */
   background-image: 
-    radial-gradient(circle at 15% 50%, rgba(124, 58, 237, 0.08), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.05), transparent 25%);
+    radial-gradient(circle at 15% 50%, rgba(124, 58, 237, 0.06), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.04), transparent 25%);
+}
+
+/* ===== TÍTULOS (Playfair Display) ===== */
+h1, h2, h3, .logo, .block-title, nav button {
+  font-family: 'Playfair Display', 'Times New Roman', serif;
 }
 
 /* ===== HEADER ===== */
@@ -54,10 +57,12 @@ header {
 
 .logo {
   font-weight: 800;
-  font-size: 18px;
-  letter-spacing: 1.5px;
+  font-size: 22px; /* Un poco más grande por ser Serif */
+  letter-spacing: 1px;
   color: var(--text);
+  transition: var(--transition);
 }
+.logo:hover { transform: scale(1.02); }
 .logo span { color: var(--purple); }
 
 nav { display: flex; gap: 8px; background: var(--bg-soft); padding: 4px; border-radius: 10px; border: 1px solid var(--border); }
@@ -69,9 +74,8 @@ nav button {
   padding: 8px 20px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
-  font-family: inherit;
   transition: var(--transition);
 }
 nav button:hover { color: var(--text); }
@@ -96,7 +100,7 @@ main {
   padding: 40px 6vw;
   overflow-y: auto;
   overflow-x: hidden;
-  animation: fadeUp 0.4s ease-out;
+  animation: fadeUp 0.5s ease-out forwards;
 }
 .page.active { display: block; }
 
@@ -107,14 +111,14 @@ main {
 ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(15px); }
+  from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ===== ESTADO VACÍO ===== */
 .empty-state {
   display: block;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-dim);
   font-style: italic;
   padding: 20px 0;
@@ -138,9 +142,16 @@ main {
 .lobby-left {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Alineado a la izquierda se ve más pro */
+  align-items: flex-start;
   text-align: left;
   gap: 24px;
+}
+
+/* Animación de flotación para el avatar */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 .hero-avatar {
@@ -155,6 +166,7 @@ main {
   color: var(--text-dim);
   box-shadow: 0 0 0 8px rgba(168, 85, 247, 0.05);
   transition: var(--transition);
+  animation: float 5s ease-in-out infinite; /* AQUI LA ANIMACION */
 }
 .hero-avatar svg { width: 40px; height: 40px; }
 .hero-avatar:hover {
@@ -163,10 +175,11 @@ main {
 }
 
 .lobby-left h1 {
-  font-size: clamp(38px, 5vw, 64px);
+  font-size: clamp(40px, 5vw, 68px);
   font-weight: 800;
-  letter-spacing: -1.5px;
+  letter-spacing: -1px;
   line-height: 1.1;
+  color: var(--text);
 }
 .lobby-left h1 span {
   background: linear-gradient(135deg, var(--purple-3), var(--purple-2));
@@ -178,8 +191,8 @@ main {
 .lobby-left p {
   color: var(--text-dim);
   font-size: 18px;
-  max-width: 460px;
-  font-weight: 300;
+  max-width: 480px;
+  font-weight: 400; /* Lora se ve mejor en regular */
 }
 
 .hero-btns {
@@ -190,13 +203,13 @@ main {
 
 /* Botones */
 .btn {
-  padding: 12px 28px;
+  padding: 14px 32px;
   border-radius: 10px;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 16px;
   border: none;
   cursor: pointer;
-  font-family: inherit;
+  font-family: 'Playfair Display', serif;
   transition: var(--transition);
   display: flex;
   align-items: center;
@@ -209,8 +222,8 @@ main {
 }
 .btn-primary:hover { 
   background: var(--purple-2);
-  transform: translateY(-2px); 
-  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.3); 
+  transform: translateY(-3px); 
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4); 
 }
 
 .btn-outline {
@@ -219,9 +232,10 @@ main {
   border: 1px solid var(--border);
 }
 .btn-outline:hover { 
-  border-color: var(--text-dim); 
+  border-color: var(--purple); 
+  color: var(--purple-3);
   background: var(--bg-soft);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 /* Columna derecha del lobby */
@@ -239,9 +253,9 @@ main {
 }
 
 .block-title {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
-  color: var(--text-dim);
+  color: var(--text);
   text-transform: uppercase;
   letter-spacing: 1.5px;
   display: flex;
@@ -268,9 +282,9 @@ main {
   padding: 16px 12px;
   text-align: center;
   text-decoration: none;
-  color: var(--text);
-  font-size: 13px;
-  font-weight: 600;
+  color: var(--text); /* Letra blanca */
+  font-size: 14px;
+  font-weight: 500;
   transition: var(--transition);
   display: flex;
   flex-direction: column;
@@ -279,18 +293,18 @@ main {
 }
 .quick-links a:hover {
   border-color: var(--purple);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   background: var(--bg-soft);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 .quick-links a img {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
   transition: var(--transition);
 }
 .quick-links a:hover img {
-  transform: scale(1.1);
+  transform: scale(1.15) rotate(5deg); /* Animacioncita al icono */
 }
 
 /* Mini feed */
@@ -304,20 +318,25 @@ main {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  font-size: 14px;
+  font-size: 15px;
   transition: var(--transition);
 }
-.mini-item:hover { border-color: var(--text-dim); }
+.mini-item:hover { 
+  border-color: var(--text-dim);
+  transform: translateX(5px); /* Desplazamiento sutil */
+}
 .mini-item .tag {
-  background: rgba(168, 85, 247, 0.15);
-  color: var(--purple-3);
-  font-size: 11px;
+  background: var(--bg-soft); /* Fondo oscuro en vez de morado */
+  color: var(--text); /* Letra blanca */
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
   font-weight: 700;
   padding: 4px 10px;
   border-radius: 6px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   white-space: nowrap;
+  border: 1px solid var(--border);
 }
 
 /* ===== PÁGINA 2: PROYECTOS ===== */
@@ -330,15 +349,16 @@ main {
 }
 
 .page-head h2 {
-  font-size: 36px;
+  font-size: 42px;
   font-weight: 800;
   letter-spacing: -1px;
+  color: var(--text);
 }
 .page-head h2 span { color: var(--purple); }
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 24px;
 }
 
@@ -352,9 +372,9 @@ main {
   flex-direction: column;
 }
 .project-card:hover {
-  border-color: var(--text-dim);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  border-color: var(--purple);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }
 
 .project-thumb {
@@ -364,22 +384,30 @@ main {
   align-items: center;
   justify-content: center;
   color: var(--text-dim);
-  font-size: 12px;
+  font-size: 13px;
   border-bottom: 1px solid var(--border);
   position: relative;
+  overflow: hidden;
 }
-.project-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.project-thumb img { 
+  width: 100%; height: 100%; object-fit: cover; 
+  transition: var(--transition);
+}
+.project-card:hover .project-thumb img {
+  transform: scale(1.05); /* Zoom a la imagen */
+}
 
 .project-thumb .type-badge {
   position: absolute;
   top: 12px;
   left: 12px;
-  background: rgba(20, 18, 26, 0.8);
+  background: rgba(20, 18, 26, 0.85);
   backdrop-filter: blur(4px);
   color: #fff;
-  font-size: 10px;
+  font-size: 11px;
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: 6px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -387,30 +415,34 @@ main {
 }
 
 .project-body {
-  padding: 20px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   flex: 1;
 }
-.project-body h3 { font-size: 18px; font-weight: 600; }
-.project-body p { font-size: 14px; color: var(--text-dim); flex: 1; }
+.project-body h3 { font-size: 22px; font-weight: 600; color: var(--text); }
+.project-body p { font-size: 15px; color: var(--text-dim); flex: 1; line-height: 1.6; }
 
 .project-links {
   display: flex;
   gap: 16px;
-  font-size: 14px;
-  margin-top: 12px;
+  font-size: 15px;
+  margin-top: 16px;
 }
 .project-links a {
-  color: var(--purple-3);
+  color: var(--text); /* Letra blanca por defecto */
   text-decoration: none;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   transition: var(--transition);
+  border-bottom: 1px solid transparent;
 }
-.project-links a:hover { color: var(--purple); }
+.project-links a:hover { 
+  color: var(--purple-3); /* Morado solo al pasar el mouse */
+  border-bottom: 1px solid var(--purple-3);
+}
 
 /* ===== PÁGINA 3: ACTUALIZACIONES ===== */
 #actualizaciones.active {
@@ -442,7 +474,7 @@ main {
 .update-item {
   position: relative;
   display: flex;
-  gap: 20px;
+  gap: 24px;
   align-items: flex-start;
 }
 .update-item::before {
@@ -456,14 +488,19 @@ main {
   background: var(--bg);
   border: 2px solid var(--purple);
   box-shadow: 0 0 10px var(--glow);
+  transition: var(--transition);
+}
+.update-item:hover::before {
+  background: var(--purple);
+  transform: scale(1.2);
 }
 
 .update-date {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-dim);
   font-weight: 600;
-  min-width: 90px;
-  padding-top: 6px;
+  min-width: 100px;
+  padding-top: 8px;
 }
 
 .update-card {
@@ -471,25 +508,32 @@ main {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 20px;
+  padding: 24px;
   transition: var(--transition);
 }
-.update-card:hover { border-color: var(--text-dim); }
+.update-card:hover { 
+  border-color: var(--purple);
+  transform: translateY(-3px);
+}
 
-.update-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
-.update-card p { color: var(--text-dim); font-size: 14px; margin-bottom: 12px; }
+.update-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+.update-card p { color: var(--text-dim); font-size: 15px; margin-bottom: 16px; }
 .update-card .link {
-  color: var(--purple-3);
+  color: var(--text);
   text-decoration: none;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
   transition: var(--transition);
+  border-bottom: 1px solid transparent;
 }
-.update-card .link:hover { color: var(--purple); }
+.update-card .link:hover { 
+  color: var(--purple-3); 
+  border-bottom: 1px solid var(--purple-3);
+}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
-  #lobby.active { grid-template-columns: 1fr; gap: 40px; padding-top: 20px; }
+  #lobby.active { grid-template-columns: 1fr; gap: 50px; padding-top: 20px; }
   .lobby-left { align-items: center; text-align: center; }
   .hero-avatar { margin: 0 auto; }
   .hero-btns { justify-content: center; }
@@ -501,4 +545,5 @@ main {
   .update-item { flex-direction: column; gap: 8px; }
   .update-item::before { top: 6px; }
   .update-date { padding-top: 0; }
+  .projects-grid { grid-template-columns: 1fr; }
 }
