@@ -1,4 +1,4 @@
-/* ===== BASE Y PALETA (Inspirada en Endesga 32 + Morado) ===== */
+/* ===== BASE Y PALETA ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
@@ -7,13 +7,13 @@
   --bg-card:   #252230;
   --border:    #383346;
   
-  --text:      #f4f4f6; /* Blanco puro para la mayoría de textos */
-  --text-dim:  #a3aab8; /* Gris claro para textos secundarios */
+  --text:      #f4f4f6;
+  --text-dim:  #a3aab8;
   
   --purple:    #a855f7;
   --purple-2:  #7c3aed;
   --purple-3:  #c084fc;
-  --glow:      rgba(168, 85, 247, 0.15);
+  --glow:      rgba(168, 85, 247, 0.2);
   
   --radius:    12px;
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -25,19 +25,54 @@ html, body {
 }
 
 body {
-  /* Fuente Lora para textos generales (Serif elegante) */
   font-family: 'Lora', 'Times New Roman', serif;
   color: var(--text);
   line-height: 1.6;
   display: flex;
   flex-direction: column;
   background-color: var(--bg);
-  background-image: 
-    radial-gradient(circle at 15% 50%, rgba(124, 58, 237, 0.06), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.04), transparent 25%);
+  position: relative;
 }
 
-/* ===== TÍTULOS (Playfair Display) ===== */
+/* ===== FONDO ANIMADO DE ESTRELLAS (CSS PURO) ===== */
+/* Capa 1: Estrellas pequeñas y lejanas */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 40% 70%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 80% 30%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 60% 90%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 90% 10%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 20% 60%, rgba(255, 255, 255, 0.6), transparent);
+  background-size: 400px 400px;
+  animation: moveStars 80s linear infinite;
+}
+
+/* Capa 2: Estrellas moradas un poco más grandes y rápidas */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    radial-gradient(1.5px 1.5px at 15% 30%, rgba(168, 85, 247, 0.6), transparent),
+    radial-gradient(2px 2px at 75% 60%, rgba(192, 132, 252, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 45% 85%, rgba(168, 85, 247, 0.4), transparent),
+    radial-gradient(2.5px 2.5px at 85% 15%, rgba(255, 255, 255, 0.8), transparent);
+  background-size: 600px 600px;
+  animation: moveStars 50s linear infinite reverse;
+}
+
+@keyframes moveStars {
+  from { background-position: 0 0; }
+  to { background-position: 400px 400px; }
+}
+
+/* ===== TÍTULOS ===== */
 h1, h2, h3, .logo, .block-title, nav button {
   font-family: 'Playfair Display', 'Times New Roman', serif;
 }
@@ -49,21 +84,25 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 16px 40px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   background: rgba(20, 18, 26, 0.7);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
   z-index: 100;
 }
 
 .logo {
   font-weight: 800;
-  font-size: 22px; /* Un poco más grande por ser Serif */
+  font-size: 22px;
   letter-spacing: 1px;
-  color: var(--text);
+  /* TODO EL LOGO AHORA ES MORADO */
+  color: var(--purple-3); 
+  text-shadow: 0 0 15px var(--glow);
   transition: var(--transition);
 }
-.logo:hover { transform: scale(1.02); }
-.logo span { color: var(--purple); }
+.logo:hover { 
+  transform: scale(1.05);
+  text-shadow: 0 0 25px rgba(192, 132, 252, 0.6);
+}
 
 nav { display: flex; gap: 8px; background: var(--bg-soft); padding: 4px; border-radius: 10px; border: 1px solid var(--border); }
 
@@ -104,18 +143,16 @@ main {
 }
 .page.active { display: block; }
 
-/* Scrollbar minimalista */
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+::-webkit-scrollbar-thumb:hover { background: var(--purple-2); }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== ESTADO VACÍO ===== */
 .empty-state {
   display: block;
   font-size: 14px;
@@ -123,7 +160,7 @@ main {
   font-style: italic;
   padding: 20px 0;
   text-align: center;
-  background: var(--bg-soft);
+  background: rgba(28, 25, 36, 0.6); /* Fondo semitransparente para que se vean las estrellas */
   border: 1px dashed var(--border);
   border-radius: var(--radius);
   width: 100%;
@@ -147,7 +184,6 @@ main {
   gap: 24px;
 }
 
-/* Animación de flotación para el avatar */
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
@@ -166,12 +202,12 @@ main {
   color: var(--text-dim);
   box-shadow: 0 0 0 8px rgba(168, 85, 247, 0.05);
   transition: var(--transition);
-  animation: float 5s ease-in-out infinite; /* AQUI LA ANIMACION */
+  animation: float 5s ease-in-out infinite;
 }
 .hero-avatar svg { width: 40px; height: 40px; }
 .hero-avatar:hover {
   border-color: var(--purple);
-  box-shadow: 0 0 0 12px rgba(168, 85, 247, 0.1);
+  box-shadow: 0 0 0 12px rgba(168, 85, 247, 0.15);
 }
 
 .lobby-left h1 {
@@ -181,18 +217,16 @@ main {
   line-height: 1.1;
   color: var(--text);
 }
+/* EL NOMBRE COMPLETO ES MORADO */
 .lobby-left h1 span {
-  background: linear-gradient(135deg, var(--purple-3), var(--purple-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--purple-3);
+  text-shadow: 0 0 20px var(--glow);
 }
 
 .lobby-left p {
   color: var(--text-dim);
   font-size: 18px;
   max-width: 480px;
-  font-weight: 400; /* Lora se ve mejor en regular */
 }
 
 .hero-btns {
@@ -201,7 +235,6 @@ main {
   margin-top: 10px;
 }
 
-/* Botones */
 .btn {
   padding: 14px 32px;
   border-radius: 10px;
@@ -223,22 +256,21 @@ main {
 .btn-primary:hover { 
   background: var(--purple-2);
   transform: translateY(-3px); 
-  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4); 
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5); 
 }
 
 .btn-outline {
-  background: var(--bg-card);
+  background: rgba(37, 34, 48, 0.8);
   color: var(--text);
   border: 1px solid var(--border);
 }
 .btn-outline:hover { 
   border-color: var(--purple); 
   color: var(--purple-3);
-  background: var(--bg-soft);
+  background: var(--bg-card);
   transform: translateY(-3px);
 }
 
-/* Columna derecha del lobby */
 .lobby-right {
   display: flex;
   flex-direction: column;
@@ -269,20 +301,19 @@ main {
   background: var(--border);
 }
 
-/* Enlaces Rápidos */
 .quick-links {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 12px;
 }
 .quick-links a {
-  background: var(--bg-card);
+  background: rgba(37, 34, 48, 0.8); /* Transparencia para ver estrellas */
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 16px 12px;
   text-align: center;
   text-decoration: none;
-  color: var(--text); /* Letra blanca */
+  color: var(--text);
   font-size: 14px;
   font-weight: 500;
   transition: var(--transition);
@@ -290,12 +321,13 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  backdrop-filter: blur(8px);
 }
 .quick-links a:hover {
   border-color: var(--purple);
   transform: translateY(-4px);
-  background: var(--bg-soft);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  background: var(--bg-card);
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.2);
 }
 .quick-links a img {
   width: 28px;
@@ -304,13 +336,12 @@ main {
   transition: var(--transition);
 }
 .quick-links a:hover img {
-  transform: scale(1.15) rotate(5deg); /* Animacioncita al icono */
+  transform: scale(1.15) rotate(5deg);
 }
 
-/* Mini feed */
 .mini-feed { display: flex; flex-direction: column; gap: 10px; }
 .mini-item {
-  background: var(--bg-card);
+  background: rgba(37, 34, 48, 0.8);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 14px 16px;
@@ -320,14 +351,15 @@ main {
   gap: 12px;
   font-size: 15px;
   transition: var(--transition);
+  backdrop-filter: blur(8px);
 }
 .mini-item:hover { 
   border-color: var(--text-dim);
-  transform: translateX(5px); /* Desplazamiento sutil */
+  transform: translateX(5px); 
 }
 .mini-item .tag {
-  background: var(--bg-soft); /* Fondo oscuro en vez de morado */
-  color: var(--text); /* Letra blanca */
+  background: var(--bg-soft);
+  color: var(--text);
   font-family: 'Playfair Display', serif;
   font-size: 12px;
   font-weight: 700;
@@ -354,7 +386,7 @@ main {
   letter-spacing: -1px;
   color: var(--text);
 }
-.page-head h2 span { color: var(--purple); }
+.page-head h2 span { color: var(--purple-3); }
 
 .projects-grid {
   display: grid;
@@ -363,18 +395,19 @@ main {
 }
 
 .project-card {
-  background: var(--bg-card);
+  background: rgba(37, 34, 48, 0.8);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
   transition: var(--transition);
   display: flex;
   flex-direction: column;
+  backdrop-filter: blur(8px);
 }
 .project-card:hover {
   border-color: var(--purple);
   transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
 
 .project-thumb {
@@ -394,7 +427,7 @@ main {
   transition: var(--transition);
 }
 .project-card:hover .project-thumb img {
-  transform: scale(1.05); /* Zoom a la imagen */
+  transform: scale(1.05);
 }
 
 .project-thumb .type-badge {
@@ -431,7 +464,7 @@ main {
   margin-top: 16px;
 }
 .project-links a {
-  color: var(--text); /* Letra blanca por defecto */
+  color: var(--text);
   text-decoration: none;
   font-weight: 600;
   display: inline-flex;
@@ -440,7 +473,7 @@ main {
   border-bottom: 1px solid transparent;
 }
 .project-links a:hover { 
-  color: var(--purple-3); /* Morado solo al pasar el mouse */
+  color: var(--purple-3);
   border-bottom: 1px solid var(--purple-3);
 }
 
@@ -505,15 +538,17 @@ main {
 
 .update-card {
   flex: 1;
-  background: var(--bg-card);
+  background: rgba(37, 34, 48, 0.8);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 24px;
   transition: var(--transition);
+  backdrop-filter: blur(8px);
 }
 .update-card:hover { 
   border-color: var(--purple);
   transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.15);
 }
 
 .update-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
