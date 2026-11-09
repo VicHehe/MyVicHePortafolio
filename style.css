@@ -186,8 +186,11 @@ main {
   display: flex; align-items: center; justify-content: center;
   color: var(--text-dim); box-shadow: 0 0 0 8px rgba(168, 85, 247, 0.05);
   transition: var(--transition); animation: float 5s ease-in-out infinite;
+  overflow: hidden; /* IMPORTANTE: Para que la foto respete el círculo */
 }
-.hero-avatar svg { width: 40px; height: 40px; }
+.hero-avatar img {
+  width: 100%; height: 100%; object-fit: cover; /* Hace que la foto llene el espacio sin deformarse */
+}
 .hero-avatar:hover { border-color: var(--purple); box-shadow: 0 0 0 12px rgba(168, 85, 247, 0.15); }
 
 .lobby-left h1 {
@@ -243,12 +246,12 @@ main {
   text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; border: 1px solid var(--border);
 }
 
-/* ===== PÁGINA 2: PROYECTOS (NUEVO DISEÑO TIPO POST) ===== */
+/* ===== PÁGINA 2: PROYECTOS ===== */
 #proyectos.active {
   display: flex;
   flex-direction: column;
   gap: 32px;
-  max-width: 1200px; /* Hice el contenedor un poco más angosto para que las tarjetas no se estiren demasiado */
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -259,7 +262,6 @@ main {
 
 .projects-grid {
   display: grid;
-  /* Tarjetas más pequeñas, tipo feed */
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
 }
@@ -267,7 +269,7 @@ main {
 .project-card {
   background: rgba(37, 34, 48, 0.85);
   border: 1px solid var(--border);
-  border-radius: 16px; /* Bordes un poco más redondeados */
+  border-radius: 16px;
   overflow: hidden;
   transition: var(--transition);
   display: flex;
@@ -282,7 +284,7 @@ main {
 }
 
 .project-thumb {
-  height: 160px; /* Altura fija más pequeña */
+  height: 160px;
   background: var(--bg-soft);
   display: flex;
   align-items: center;
@@ -297,9 +299,12 @@ main {
 }
 .project-card:hover .project-thumb img { transform: scale(1.08); }
 
+/* ARREGLO: Z-INDEX PARA QUE LA ETIQUETA NO SE OCULTE */
 .project-thumb .type-badge {
   position: absolute; top: 12px; left: 12px;
-  background: rgba(20, 18, 26, 0.85); backdrop-filter: blur(4px);
+  z-index: 10; /* <--- Esto evita que la imagen lo tape */
+  background: rgba(20, 18, 26, 0.95); /* Un poco más sólido para que se lea bien */
+  backdrop-filter: blur(4px);
   color: #fff; font-size: 10px; font-family: 'Playfair Display', serif; font-weight: 700;
   padding: 4px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: 1px;
   border: 1px solid rgba(255,255,255,0.1);
@@ -325,7 +330,6 @@ main {
   color: var(--text-dim);
   line-height: 1.5;
   margin-bottom: 16px;
-  /* Limita el texto a 3 líneas para que todas las tarjetas midan igual */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -341,7 +345,6 @@ main {
   justify-content: flex-start;
 }
 
-/* Botón tipo Red Social */
 .btn-project {
   display: inline-flex;
   align-items: center;
@@ -362,7 +365,7 @@ main {
   color: #fff;
 }
 .btn-project:hover svg {
-  transform: translateX(4px); /* Animación de la flechita */
+  transform: translateX(4px);
 }
 
 /* ===== PÁGINA 3: ACTUALIZACIONES ===== */
@@ -408,7 +411,6 @@ main {
   .update-item::before { top: 6px; }
   .update-date { padding-top: 0; }
   
-  /* En móviles las tarjetas ocupan todo el ancho */
   .projects-grid { grid-template-columns: 1fr; }
   
   .quick-links a, .mini-item, .project-card, .update-card, .btn-outline {
