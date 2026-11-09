@@ -1,6 +1,13 @@
 [
   {
     "type": "Web",
+    "title": "MyHubHestudio",
+    "description": "MyHubHestudio es un entorno de escritorio ligero (Web OS) que corre directamente en tu navegador. No necesitas instalar nada: todo se guarda de forma local y segura en tu navegador mediante IndexedDB.",
+    "link": "https://viche-studios.github.io/MyHubHestudio/",
+    "image": "1794189831530_MyHubHestudio.png"
+  },
+  {
+    "type": "Web",
     "title": "Cod-Hestudio",
     "description": "Cod-Hestudio es un editor de código que se abre en el navegador. Trabajas directamente sobre las carpetas de tu computadora, y con un sistema de plugins que añaden funciones.",
     "link": "https://viche-studios.github.io/Cod-Hestudio/",
