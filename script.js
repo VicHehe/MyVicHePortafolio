@@ -19,6 +19,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const fallbackIcon = "https://api.iconify.design/lucide:globe.svg?color=%23c084fc";
 
+  // Formatea fechas ISO (YYYY-MM-DD) a algo legible en español.
+  // Fechas viejas tipo "Hoy" se respetan tal cual.
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+      const d = new Date(dateStr + 'T00:00:00');
+      return d.toLocaleDateString('es-ES', {
+        day: 'numeric', month: 'short', year: 'numeric'
+      });
+    }
+    return dateStr;
+  }
+
   async function loadSocials() {
     try {
       const res = await fetch(`Datos/socials.json${v}`, fetchOpts);
@@ -77,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       document.getElementById('updates-container').innerHTML = updates.map(u => `
         <div class="update-item">
-          <div class="update-date">${u.date}</div>
+          <div class="update-date">${formatDate(u.date)}</div>
           <div class="update-card">
             <h3>${u.title}</h3>
             <p>${u.description}</p>
@@ -88,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById('mini-feed-container').innerHTML = updates.slice(0, 3).map(u => `
         <div class="mini-item">
           <span><span class="tag">${u.tag || 'Info'}</span> &nbsp;${u.title}</span>
-          <span style="color:var(--text-dim);font-size:11px;white-space:nowrap;">${u.date}</span>
+          <span style="color:var(--text-dim);font-size:11px;white-space:nowrap;">${formatDate(u.date)}</span>
         </div>`).join('');
     } catch(e) {
       document.getElementById('updates-container').innerHTML =
@@ -98,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ⚡ Carga en PARALELO (antes era secuencial → 3x más lento)
+  // ⚡ Carga en PARALELO
   loadSocials();
   loadProjects();
   loadUpdates();
