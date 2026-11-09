@@ -2,7 +2,7 @@
   {
     "type": "Web",
     "title": "Cod-Hestudio",
-    "description": "Cod-Hestudio es un editor de código que se abre en el navegador. Trabajas directamente sobre las carpetas de tu computadora, con un editor del mismo tipo que usa Visual Studio Code por dentro (Monaco), y con un sistema de plugins que añaden funciones: búsqueda, notas, vista previa y más.",
+    "description": "Cod-Hestudio es un editor de código que se abre en el navegador. Trabajas directamente sobre las carpetas de tu computadora, y con un sistema de plugins que añaden funciones.",
     "link": "https://viche-studios.github.io/Cod-Hestudio/",
     "image": "1794189405241_Cod-Hestudio.png"
   },
