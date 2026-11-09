@@ -35,7 +35,6 @@ body {
 }
 
 /* ===== FONDO ANIMADO DE ESTRELLAS (CSS PURO) ===== */
-/* Capa 1: Estrellas pequeñas y lejanas */
 body::before {
   content: "";
   position: fixed;
@@ -52,7 +51,6 @@ body::before {
   animation: moveStars 80s linear infinite;
 }
 
-/* Capa 2: Estrellas moradas un poco más grandes y rápidas */
 body::after {
   content: "";
   position: fixed;
@@ -85,7 +83,8 @@ header {
   justify-content: space-between;
   padding: 16px 40px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(20, 18, 26, 0.7);
+  background: rgba(20, 18, 26, 0.85);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   z-index: 100;
 }
@@ -94,7 +93,6 @@ header {
   font-weight: 800;
   font-size: 22px;
   letter-spacing: 1px;
-  /* TODO EL LOGO AHORA ES MORADO */
   color: var(--purple-3); 
   text-shadow: 0 0 15px var(--glow);
   transition: var(--transition);
@@ -160,7 +158,7 @@ main {
   font-style: italic;
   padding: 20px 0;
   text-align: center;
-  background: rgba(28, 25, 36, 0.6); /* Fondo semitransparente para que se vean las estrellas */
+  background: rgba(28, 25, 36, 0.6);
   border: 1px dashed var(--border);
   border-radius: var(--radius);
   width: 100%;
@@ -211,13 +209,13 @@ main {
 }
 
 .lobby-left h1 {
-  font-size: clamp(40px, 5vw, 68px);
+  font-size: clamp(38px, 5vw, 68px);
   font-weight: 800;
   letter-spacing: -1px;
   line-height: 1.1;
   color: var(--text);
+  word-wrap: break-word; /* Evita desbordes */
 }
-/* EL NOMBRE COMPLETO ES MORADO */
 .lobby-left h1 span {
   color: var(--purple-3);
   text-shadow: 0 0 20px var(--glow);
@@ -233,6 +231,7 @@ main {
   display: flex;
   gap: 16px;
   margin-top: 10px;
+  flex-wrap: wrap; /* Se acomodan si la pantalla es chica */
 }
 
 .btn {
@@ -307,7 +306,7 @@ main {
   gap: 12px;
 }
 .quick-links a {
-  background: rgba(37, 34, 48, 0.8); /* Transparencia para ver estrellas */
+  background: rgba(37, 34, 48, 0.85);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 16px 12px;
@@ -321,6 +320,7 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 .quick-links a:hover {
@@ -341,7 +341,7 @@ main {
 
 .mini-feed { display: flex; flex-direction: column; gap: 10px; }
 .mini-item {
-  background: rgba(37, 34, 48, 0.8);
+  background: rgba(37, 34, 48, 0.85);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 14px 16px;
@@ -351,6 +351,7 @@ main {
   gap: 12px;
   font-size: 15px;
   transition: var(--transition);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 .mini-item:hover { 
@@ -390,18 +391,19 @@ main {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 24px;
 }
 
 .project-card {
-  background: rgba(37, 34, 48, 0.8);
+  background: rgba(37, 34, 48, 0.85);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
   transition: var(--transition);
   display: flex;
   flex-direction: column;
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 .project-card:hover {
@@ -435,6 +437,7 @@ main {
   top: 12px;
   left: 12px;
   background: rgba(20, 18, 26, 0.85);
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   color: #fff;
   font-size: 11px;
@@ -538,11 +541,12 @@ main {
 
 .update-card {
   flex: 1;
-  background: rgba(37, 34, 48, 0.8);
+  background: rgba(37, 34, 48, 0.85);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 24px;
   transition: var(--transition);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 .update-card:hover { 
@@ -566,19 +570,56 @@ main {
   border-bottom: 1px solid var(--purple-3);
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== RESPONSIVE Y ARREGLOS MÓVILES ===== */
 @media (max-width: 1024px) {
-  #lobby.active { grid-template-columns: 1fr; gap: 50px; padding-top: 20px; }
-  .lobby-left { align-items: center; text-align: center; }
+  #lobby.active { 
+    grid-template-columns: 1fr; 
+    gap: 40px; 
+    padding-top: 20px; 
+  }
+  .lobby-left { 
+    align-items: center; 
+    text-align: center; 
+  }
   .hero-avatar { margin: 0 auto; }
   .hero-btns { justify-content: center; }
 }
 
 @media (max-width: 768px) {
-  header { padding: 16px 20px; flex-direction: column; gap: 16px; }
+  header { 
+    padding: 16px 20px; 
+    flex-direction: column; 
+    gap: 16px; 
+  }
+  
+  /* Arreglo del menú de navegación para que no se salga */
+  nav { 
+    width: 100%; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+  }
+  nav button { 
+    flex: 1; 
+    text-align: center; 
+    padding: 8px 10px; 
+    font-size: 14px; 
+  }
+
   .page { padding: 24px 20px; }
+  
+  /* Arreglo del título gigante para que quepa en celular */
+  .lobby-left h1 { font-size: clamp(32px, 8vw, 48px); }
+  
   .update-item { flex-direction: column; gap: 8px; }
   .update-item::before { top: 6px; }
   .update-date { padding-top: 0; }
+  
   .projects-grid { grid-template-columns: 1fr; }
+
+  /* Desactivamos el blur (desenfoque) en móviles para que vuele y no haya bugs de renderizado */
+  .quick-links a, .mini-item, .project-card, .update-card, .btn-outline {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: var(--bg-card);
+  }
 }
