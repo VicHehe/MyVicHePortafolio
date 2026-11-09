@@ -11,25 +11,27 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener('click', () => window.go(btn.dataset.page));
   });
 
-  // Icono por defecto en caso de que la imagen no cargue (un globo terráqueo)
-  const defaultIcon = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`;
+  // Icono por defecto limpio (sin comillas dobles que rompan el HTML)
+  const fallbackIcon = "https://api.iconify.design/lucide:globe.svg?color=%23c084fc";
 
   async function loadData() {
+    // Añade la fecha actual a la URL para forzar al navegador a descargar la versión nueva
+    const noCache = `?v=${new Date().getTime()}`;
+
     try {
       // 1. Cargar Socials
-      const socRes = await fetch('Datos/socials.json');
+      const socRes = await fetch('Datos/socials.json' + noCache);
       if(socRes.ok) {
         const socials = await socRes.json();
         const socContainer = document.getElementById('socials-container');
         socContainer.innerHTML = '';
         
         socials.forEach(s => {
-          // Agregamos un onerror para que si la imagen falla, use el defaultIcon
           socContainer.innerHTML += `
             <a href="${s.url}" target="_blank">
-              <img src="Datos/Imagenes/${s.icon}" 
-                   onerror="this.onerror=null; this.src='${defaultIcon}'; console.warn('No se encontró la imagen: Datos/Imagenes/${s.icon}');"
-                   style="width:24px; height:24px; object-fit:contain; margin-bottom: 2px;">
+              <img src="Datos/Imagenes/${s.icon}${noCache}" 
+                   onerror="this.onerror=null; this.src='${fallbackIcon}';"
+                   style="width:24px; height:24px; object-fit:contain; margin-bottom: 4px;">
               ${s.name}
             </a>`;
         });
@@ -40,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // 2. Cargar Proyectos
-      const projRes = await fetch('Datos/projects.json');
+      const projRes = await fetch('Datos/projects.json' + noCache);
       if(projRes.ok) {
         const projects = await projRes.json();
         const projContainer = document.getElementById('projects-container');
@@ -50,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <article class="project-card">
               <div class="project-thumb">
                 <span class="type-badge">${p.type}</span>
-                ${p.image ? `<img src="Datos/Imagenes/${p.image}" style="width:100%;height:100%;object-fit:cover;">` : '[miniatura]'}
+                ${p.image ? `<img src="Datos/Imagenes/${p.image}${noCache}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">` : '[miniatura]'}
               </div>
               <div class="project-body">
                 <h3>${p.title}</h3>
@@ -68,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // 3. Cargar Actualizaciones
-      const updRes = await fetch('Datos/updates.json');
+      const updRes = await fetch('Datos/updates.json' + noCache);
       if(updRes.ok) {
         const updates = await updRes.json();
         const updContainer = document.getElementById('updates-container');
