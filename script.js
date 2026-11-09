@@ -11,11 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener('click', () => window.go(btn.dataset.page));
   });
 
-  // Icono por defecto limpio (sin comillas dobles que rompan el HTML)
   const fallbackIcon = "https://api.iconify.design/lucide:globe.svg?color=%23c084fc";
 
   async function loadData() {
-    // Añade la fecha actual a la URL para forzar al navegador a descargar la versión nueva
     const noCache = `?v=${new Date().getTime()}`;
 
     try {
@@ -41,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch(e) { console.log("No socials yet"); }
 
     try {
-      // 2. Cargar Proyectos
+      // 2. Cargar Proyectos (NUEVO DISEÑO TIPO POST)
       const projRes = await fetch('Datos/projects.json' + noCache);
       if(projRes.ok) {
         const projects = await projRes.json();
@@ -52,13 +50,13 @@ document.addEventListener("DOMContentLoaded", () => {
             <article class="project-card">
               <div class="project-thumb">
                 <span class="type-badge">${p.type}</span>
-                ${p.image ? `<img src="Datos/Imagenes/${p.image}${noCache}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">` : '[miniatura]'}
+                ${p.image ? `<img src="Datos/Imagenes/${p.image}${noCache}" onerror="this.style.display='none'">` : '<span style="font-size:30px; opacity:0.5;">🎮</span>'}
               </div>
               <div class="project-body">
-                <h3>${p.title}</h3>
-                <p>${p.description}</p>
-                <div class="project-links">
-                  ${p.link ? `<a href="${p.link}" target="_blank">Ver →</a>` : ''}
+                <h3 class="project-title">${p.title}</h3>
+                <p class="project-desc">${p.description}</p>
+                <div class="project-footer">
+                  ${p.link ? `<a href="${p.link}" target="_blank" class="btn-project">Ver Proyecto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>` : '<span style="color:var(--text-dim); font-size:12px;">Sin enlace</span>'}
                 </div>
               </div>
             </article>`;
