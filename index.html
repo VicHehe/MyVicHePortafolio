@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portafolio — VicHehe</title>
+  
+  <!-- Fuente Outfit para un look profesional -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,14 +27,15 @@
     <!-- ===== LOBBY ===== -->
     <section class="page active" id="lobby">
       <div class="lobby-left">
-        <div class="hero-avatar">[foto]</div>
+        <div class="hero-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
         <h1>Hola, soy <span>VicHehe</span></h1>
         <p>Desarrollador, creador y hacedor de cosas. Todo sobre mí, en un solo lugar.</p>
         <div class="hero-btns">
           <button class="btn btn-primary" onclick="go('proyectos')">Ver proyectos</button>
           <button class="btn btn-outline" onclick="go('actualizaciones')">Novedades</button>
         </div>
-        <span class="zone-label">Zona: Hero / identidad</span>
       </div>
 
       <div class="lobby-right">
@@ -36,7 +43,7 @@
           <div class="block-title">Encuéntrame en</div>
           <!-- Aquí se inyectan los enlaces -->
           <div class="quick-links" id="socials-container">
-            <p style="color:var(--text-dim); font-size:12px;">Cargando enlaces...</p>
+            <span class="empty-state">Cargando enlaces...</span>
           </div>
         </div>
 
@@ -44,7 +51,7 @@
           <div class="block-title">Últimas novedades</div>
           <!-- Aquí se inyectan las novedades -->
           <div class="mini-feed" id="mini-feed-container">
-             <p style="color:var(--text-dim); font-size:12px;">Cargando novedades...</p>
+             <span class="empty-state">Cargando novedades...</span>
           </div>
         </div>
       </div>
@@ -55,9 +62,8 @@
       <div class="page-head">
         <h2>Mis <span>proyectos</span></h2>
       </div>
-      <!-- Aquí se inyectan los proyectos -->
       <div class="projects-grid" id="projects-container">
-        <p style="color:var(--text-dim); font-size:12px;">Cargando proyectos...</p>
+        <span class="empty-state">Cargando proyectos...</span>
       </div>
     </section>
 
@@ -65,11 +71,9 @@
     <section class="page" id="actualizaciones">
       <div class="page-head">
         <h2>Actualiza<span>ciones</span></h2>
-        <span class="zone-label">Zona: Feed cronológico</span>
       </div>
-      <!-- Aquí se inyectan las actualizaciones -->
       <div class="timeline" id="updates-container">
-        <p style="color:var(--text-dim); font-size:12px;">Cargando actualizaciones...</p>
+        <span class="empty-state">Cargando actualizaciones...</span>
       </div>
     </section>
   </main>
