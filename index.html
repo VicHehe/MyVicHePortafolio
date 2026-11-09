@@ -5,20 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vic-Hehe World</title>
   
-  <!-- FAVICON -->
   <link rel="icon" type="image/png" href="Assets/icono.png">
 
-  <!-- Fuentes Serif Elegantes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+  <!-- Reducido: quitamos la variante italic 600 (no se usa) -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Playfair+Display:wght@600;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
-    <!-- Logo actualizado -->
     <div class="logo">VicHehe <span>World</span></div>
     <nav>
       <button class="active" data-page="lobby">Lobby</button>
@@ -28,12 +26,10 @@
   </header>
 
   <main>
-    <!-- ===== LOBBY ===== -->
     <section class="page active" id="lobby">
       <div class="lobby-left">
-        <!-- FOTO DE PERFIL DESDE ASSETS -->
         <div class="hero-avatar">
-          <img src="Assets/icono.png" alt="Foto de perfil de VicHehe">
+          <img src="Assets/icono.png" alt="Foto de perfil de VicHehe" width="110" height="110">
         </div>
         <h1>Hola, soy <span>Vic-Hehe</span></h1>
         <p>Desarrollador web, creador de videojuegos y artista visual. Bienvenido a mi mundo: un escenario donde puedes admirar todo lo que sale de mi cabecita.</p>
@@ -60,7 +56,6 @@
       </div>
     </section>
 
-    <!-- ===== PROYECTOS ===== -->
     <section class="page" id="proyectos">
       <div class="page-head">
         <h2>Mis <span>proyectos</span></h2>
@@ -70,10 +65,9 @@
       </div>
     </section>
 
-    <!-- ===== ACTUALIZACIONES ===== -->
     <section class="page" id="actualizaciones">
       <div class="page-head">
-        <h2>Actualizaciones</span></h2>
+        <h2>Actualizaciones</h2>
       </div>
       <div class="timeline" id="updates-container">
         <span class="empty-state">Cargando actualizaciones...</span>
