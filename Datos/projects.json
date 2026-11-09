@@ -1,5 +1,12 @@
 [
   {
+    "type": "Video",
+    "title": "Especial de año nuevo 2026",
+    "description": "un cortometraje personal donde mezcle animacion 2D y tecnica mixta al ritmo de la musica. ",
+    "link": "https://youtu.be/NtnFC1ASuWs?si=ma86AyFni1p9p-iU",
+    "image": "1794197615260_Happy2026.jpg"
+  },
+  {
     "type": "itch.io",
     "title": "DELTATIME",
     "description": "es un videojuego de estilo RPG, es una simple demostración, aun así tiene una historia autoconclusiva inspirado en deltarune.",
