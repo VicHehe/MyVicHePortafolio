@@ -1,6 +1,13 @@
 [
   {
     "type": "Video",
+    "title": "Its Tv Time",
+    "description": "Un grupo fijo de amigos convierte una llamada semanal de Discord en una webserie irreverente: de una hora de conversación libre se recortan los mejores diez minutos, sin guion ni tema previo, con la actualidad, las teorías absurdas y la charla cotidiana como materia prima.",
+    "link": "https://www.youtube.com/watch?v=0dqtozkzpbI&list=PLQOGhcR6EZAw",
+    "image": "1794356470211_export202611102117180403.png"
+  },
+  {
+    "type": "Video",
     "title": "Especial de año nuevo 2026",
     "description": "un cortometraje personal donde mezcle animacion 2D y tecnica mixta al ritmo de la musica. ",
     "link": "https://youtu.be/NtnFC1ASuWs?si=ma86AyFni1p9p-iU",
