@@ -1,17 +1,31 @@
 [
-  {
-    "type": "Video",
-    "title": "Its Tv Time",
-    "description": "Un grupo fijo de amigos convierte una llamada semanal de Discord en una webserie irreverente: de una hora de conversación libre se recortan los mejores diez minutos, sin guion ni tema previo, con la actualidad, las teorías absurdas y la charla cotidiana como materia prima.",
-    "link": "https://www.youtube.com/watch?v=0dqtozkzpbI&list=PLQOGhcR6EZAw",
-    "image": "1794356470211_export202611102117180403.png"
+    {
+    "type": "Web",
+    "title": "Cod-Hestudio",
+    "description": "Cod-Hestudio es un editor de código que se abre en el navegador. Trabajas directamente sobre las carpetas de tu computadora, y con un sistema de plugins que añaden funciones.",
+    "link": "https://viche-studios.github.io/Cod-Hestudio/",
+    "image": "1794189405241_Cod-Hestudio.png"
+  },
+    {
+    "type": "itch.io",
+    "title": "The Burger Knight",
+    "description": "Asume el papel de guerreros amantes de la comida en este trepidante juego de plataformas de estilo arcade. Inspirado en la época dorada de los clásicos de pantalla fija",
+    "link": "https://vicky-hehe.itch.io/the-burger-knight.",
+    "image": "1794185147726_L1faAb.png"
   },
   {
-    "type": "Video",
-    "title": "Especial de año nuevo 2026",
-    "description": "un cortometraje personal donde mezcle animacion 2D y tecnica mixta al ritmo de la musica. ",
-    "link": "https://youtu.be/NtnFC1ASuWs?si=ma86AyFni1p9p-iU",
-    "image": "1794197615260_Happy2026.jpg"
+    "type": "Web",
+    "title": "MyHubHestudio",
+    "description": "MyHubHestudio es un entorno de escritorio ligero (Web OS) que corre directamente en tu navegador. No necesitas instalar nada: todo se guarda de forma local y segura en tu navegador mediante IndexedDB.",
+    "link": "https://viche-studios.github.io/MyHubHestudio/",
+    "image": "1794189831530_MyHubHestudio.png"
+  },
+  {
+    "type": "Web",
+    "title": "VicWebOs",
+    "description": "VicWebOs es un \"sistema operativo\" en el navegador. Tiene apps instalables, temas intercambiables y widgets. Ideal para grupos que buscan un espacio digital compartido.",
+    "link": "https://vichehe.github.io/VicWebOs/index.html",
+    "image": "1794189191705_Captura de pantalla 2026-11-08 225222.png"
   },
   {
     "type": "itch.io",
@@ -28,31 +42,17 @@
     "image": "1794196449224_QUHylm.png"
   },
   {
-    "type": "Web",
-    "title": "MyHubHestudio",
-    "description": "MyHubHestudio es un entorno de escritorio ligero (Web OS) que corre directamente en tu navegador. No necesitas instalar nada: todo se guarda de forma local y segura en tu navegador mediante IndexedDB.",
-    "link": "https://viche-studios.github.io/MyHubHestudio/",
-    "image": "1794189831530_MyHubHestudio.png"
+    "type": "Video",
+    "title": "Especial de año nuevo 2026",
+    "description": "un cortometraje personal donde mezcle animacion 2D y tecnica mixta al ritmo de la musica. ",
+    "link": "https://youtu.be/NtnFC1ASuWs?si=ma86AyFni1p9p-iU",
+    "image": "1794197615260_Happy2026.jpg"
   },
   {
-    "type": "Web",
-    "title": "Cod-Hestudio",
-    "description": "Cod-Hestudio es un editor de código que se abre en el navegador. Trabajas directamente sobre las carpetas de tu computadora, y con un sistema de plugins que añaden funciones.",
-    "link": "https://viche-studios.github.io/Cod-Hestudio/",
-    "image": "1794189405241_Cod-Hestudio.png"
-  },
-  {
-    "type": "Web",
-    "title": "VicWebOs",
-    "description": "VicWebOs es un \"sistema operativo\" en el navegador. Tiene apps instalables, temas intercambiables y widgets. Ideal para grupos que buscan un espacio digital compartido.",
-    "link": "https://vichehe.github.io/VicWebOs/index.html",
-    "image": "1794189191705_Captura de pantalla 2026-11-08 225222.png"
-  },
-  {
-    "type": "itch.io",
-    "title": "The Burger Knight",
-    "description": "Asume el papel de guerreros amantes de la comida en este trepidante juego de plataformas de estilo arcade. Inspirado en la época dorada de los clásicos de pantalla fija",
-    "link": "https://vicky-hehe.itch.io/the-burger-knight.",
-    "image": "1794185147726_L1faAb.png"
+    "type": "Video",
+    "title": "Its Tv Time",
+    "description": "Un grupo de amigos convierte una llamada semanal de Discord en una webserie irreverente sin guion: de una hora de charla libre se recortan los mejores diez minutos.",
+    "link": "https://www.youtube.com/watch?v=0dqtozkzpbI&list=PLQOGhcR6EZAw",
+    "image": "1794356470211_export202611102117180403.png"
   }
 ]
